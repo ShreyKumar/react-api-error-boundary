@@ -9,22 +9,55 @@
 ```bash
 npm install --save react-api-error-boundary
 ```
+or
+```bash
+yarn add react-api-error-boundary
+```
 
 ## Usage
-
+In your `App.js`, initialize the Provider
 ```jsx
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import Axios from 'axios'
 
-import MyComponent from 'react-api-error-boundary'
-import 'react-api-error-boundary/dist/index.css'
+import Data from './MyDataDependentComponent'
+import { useErrorBoundary, ErrorBoundaryProvider } from 'react-api-error-boundary'
+import ErrorUI from './MyErrorFallbackUI'
+import LoadingUI from './MyLoadingFallbackUI'
+import logErrorToService from './logErrorToService'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+<ErrorBoundaryProvider
+    loadingUI={LoadingUI}
+    errorUI={ErrorUI}
+    logError={(e) => logErrorToService(e)}
+>
+    <Data />
+    {/* ...More routes/components here */}
+</ErrorBoundaryProvider>
+```
+Then use the Context on your page
+```jsx
+import React, { useEffect, useState } from 'react'
+import Axios from 'axios'
+import { useErrorBoundary } from 'react-api-error-boundary'
+
+const Data = () => {
+    const { makeApiRequest } = useErrorBoundary()
+    const [data, setData] = useState('')
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await makeApiRequest(Axios.get('https://reqres.in/api/users'))
+
+            setData(JSON.stringify(res))
+        }
+
+        fetchData()
+    }, [])
+
+    return <code>{data}</code>
 }
 ```
 
 ## License
-
 MIT © [shreykumar](https://github.com/shreykumar)

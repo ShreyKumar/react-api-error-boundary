@@ -2,7 +2,7 @@
 
 > An easy way to centralize API calls on data dependent components
 
-[![NPM](https://img.shields.io/npm/v/react-api-error-boundary.svg)](https://www.npmjs.com/package/react-api-error-boundary) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-api-error-boundary.svg)](https://www.npmjs.com/package/react-api-error-boundary) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
 ## Install
 
